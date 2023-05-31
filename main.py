@@ -2,7 +2,7 @@ import os
 import PyPDF2
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from reader import reader
+from processor import *
 
 app = FastAPI()
 
@@ -41,4 +41,9 @@ async def process_pdf(file: UploadFile = File(...)):
     os.remove(file_name)
 
     # Realiza aquí el procesamiento adicional de la información extraída si es necesario
+    data = eliminar_repeticiones(data)
+    data = combinar_lineas(data)
+    data = unir_materias_divididas(data)
+    data = formato_final(data)
+
     return reader(data)
