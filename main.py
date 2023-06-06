@@ -10,6 +10,8 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",  # Agrega aquí el origen de tu aplicación de React
     # Otros orígenes permitidos si es necesario
+    "https://unicalcgmd.netlify.app"  # Agrega aquí el dominio de tu página web desplegada
+    # Otros orígenes permitidos si es necesario
 ]
 
 # Habilitar CORS
@@ -35,7 +37,6 @@ async def process_pdf(file: UploadFile = File(...)):
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         pdf_object = pdf_reader.pages[0]
         data = pdf_object.extract_text()
-        
 
     # Eliminar el archivo PDF guardado
     os.remove(file_name)
