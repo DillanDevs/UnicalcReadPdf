@@ -1,10 +1,15 @@
-import os
-import PyPDF2
-from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from processor import *
+from fastapi import FastAPI
+from routers.reader import reader_router
+from middlewares.error_handler import ErrorHandler
+import uvicorn
+import os
 
-app = FastAPI()
+app = FastAPI(
+    title="API unicalc",
+    description="API para el extraer notas, para el proyecto unicalc",
+    version="1.0",
+)
 
 # Configurar los orígenes permitidos
 origins = [
@@ -15,6 +20,9 @@ origins = [
 ]
 
 # Habilitar CORS
+
+app.add_middleware(ErrorHandler)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -23,28 +31,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/upload/pdf")
-async def process_pdf(file: UploadFile = File(...)):
-    # Obtener el nombre del archivo enviado
-    file_name = file.filename
+app.include_router(reader_router)
 
-    # Guardar el archivo PDF en el sistema de archivos
-    with open(file_name, 'wb') as pdf_file:
-        pdf_file.write(await file.read())
-
-    # Leer el contenido del archivo PDF guardado
-    with open(file_name, 'rb') as pdf_file:
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
-        pdf_object = pdf_reader.pages[0]
-        data = pdf_object.extract_text()
-
-    # Eliminar el archivo PDF guardado
-    os.remove(file_name)
-
-    # Realiza aquí el procesamiento adicional de la información extraída si es necesario
-    data = eliminar_repeticiones(data)
-    data = combinar_lineas(data)
-    data = unir_materias_divididas(data)
-    data = formato_final(data)
-
-    return reader(data)
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0",
+                port=int(os.environ.get("PORT", 8000)))
