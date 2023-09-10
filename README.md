@@ -32,13 +32,14 @@ Welcome to the PDF Data Extractor repository! This application, built with FastA
 This project has been developed by [Dillan Asprilla](https://github.com/DillanDevs).
 
 ## License
-Este proyecto se encuentra bajo la siguiente licencia:
+This project is licensed under the following license:
 
-[![Licencia CC-BY-NC-ND 4.0](https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.es)
+[![License CC-BY-NC-ND 4.0](https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en)
 
-El contenido de este proyecto está protegido por la licencia Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 Internacional. Esto significa que puedes utilizar y compartir este proyecto con otros bajo las siguientes condiciones:
+The content of this project is protected by the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. This means that you can use and share this project with others under the following conditions:
 
-- *Atribución (Attribution):* Debes otorgar crédito adecuado, proporcionando un enlace a la licencia y mencionando a los autores originales.
+- **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made. You must do so in a reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
 - *No Comercial (NonCommercial):* No puedes utilizar este proyecto con fines comerciales.
 - *No Derivados (NoDerivatives):* No puedes modificar, adaptar o crear obras derivadas a partir de este proyecto.
 
